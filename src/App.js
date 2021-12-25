@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 // import RoutesConstructor from "./RoutesConstructor/RoutesConstructor";
-import RoutesConstructorFunc from "./RoutesConstructor/RoutesConstructorFunc";
+import RoutesConstructorFunc from "./RoutesConstructor/RCFunc";
 
 class App extends Component {
   render() {
