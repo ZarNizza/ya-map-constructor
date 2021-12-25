@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "@dnd-kit/core": "^4.0.3",
+    "@dnd-kit/sortable": "^5.1.0",
+    "@dnd-kit/utilities": "^3.0.2",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-scripts": "^1.1.0",
     "react-sortable-hoc": "^0.6.8"
   },
