@@ -1,61 +1,62 @@
-.routes-constructor{
-	position:relative;
-	overflow:hidden;
-	font-size:16px;
+.routes-constructor {
+  position: relative;
+  overflow: hidden;
+  font-size: 16px;
+  height: 550px;
 }
-.routes-constructor .left-side{
-	float:left;
-	width:200px;
+.routes-constructor .left-side {
+  float: left;
+  width: 200px;
 }
-.routes-constructor .right-side{
-	margin-left:200px;
-	height:inherit;
+.routes-constructor .right-side {
+  margin-left: 200px;
+  height: inherit;
 }
-.routes-constructor .map{
-	height:inherit;
-}
-
-.routes-constructor .input{
-	position:relative;
-	padding:10px 10px 0;
-}
-.routes-constructor .input input{
-	width:100%;
-	box-sizing:border-box;
+.routes-constructor .map {
+  height: inherit;
 }
 
-.point-list{
-	margin:15px 0 0;
-	overflow-x:hidden;
-	overflow-y:scroll;
+.routes-constructor .input {
+  position: relative;
+  padding: 10px 10px 0;
+}
+.routes-constructor .input input {
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.point-list__item{
-	position:relative;
-	margin:0 0 2px;
-	cursor:pointer;
+.point-list {
+  margin: 15px 0 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
-.point-list__item:hover{
-	background:#EEE;
+
+.point-list__item {
+  position: relative;
+  margin: 0 0 2px;
+  cursor: pointer;
 }
-.point-list__item .title{
-	word-break:break-all;
-	max-width:150px;
-	display:block;
-	padding:5px 10px;
+.point-list__item:hover {
+  background: #eee;
 }
-.point-list__item .remove{
-	position:absolute;
-	top:0;
-	bottom:0;
-	right:5px;
-	margin:auto;
-	height:20px;
-	width:15px;
-	text-align:center;
+.point-list__item .title {
+  word-break: break-all;
+  max-width: 150px;
+  display: block;
+  padding: 5px 10px;
 }
-.point-list__item .remove:before{
-	content:'X';
-	font-size:12px;
-	color:#999;
+.point-list__item .remove {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 5px;
+  margin: auto;
+  height: 20px;
+  width: 15px;
+  text-align: center;
+}
+.point-list__item .remove:before {
+  content: "X";
+  font-size: 12px;
+  color: #999;
 }
