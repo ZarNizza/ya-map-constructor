@@ -121,7 +121,7 @@ class RoutesConstructorMap extends Component {
         ReactDOM.findDOMNode(That.refs.routesConstructorMap),
         {
           center: That.getCenter(),
-          zoom: 10,
+          zoom: 12,
         }
       );
       That.__state = 2;
