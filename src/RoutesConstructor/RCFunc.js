@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import Sortable from "sortablejs"; // Работает!
-// import { arrayMove } from "react-sortable-hoc";
-// import RoutesConstructorMapFunc from "./RoutesConstructorMapFunc";
+import React, { useState, useRef } from "react";
+// import ReactDOM from "react-dom";
+import RoutesConstructorMapFunc from "./RoutesConstructorMapFunc";
 import "./RoutesConstructor.css";
 
 export default function RoutesConstructorFunc() {
   const [points, setPoints] = useState([]);
-  const refSort = React.createRef();
+  const [inpValue, setInpValue] = useState("");
+  const inputRef = useRef();
 
   function createMarker(e) {
     e.preventDefault();
-
-    var Node = ReactDOM.findDOMNode(this.refs.markerName);
-    if (!Node.value.trim().length) return;
+    console.log("inpValue=", inpValue);
+    if (!inpValue.length) return;
 
     var Point = {
       id: new Date().getTime() + Math.random(),
-      title: Node.value.trim(),
+      title: inpValue,
       position: window.__Map.getCenter(),
-      index: points.length,
     };
 
-    setPoints(...Point);
-    Node.value = "";
+    setPoints((prev) => [...prev, Point]);
+    inputRef.current.value = "";
     return;
   }
 
@@ -33,60 +30,35 @@ export default function RoutesConstructorFunc() {
     return;
   }
 
-  function SortableItem(props) {
-    return (
-      <div>
-        <span className="title">{props.title}</span>
-        <span className="remove" onClick={(e) => removeMarker(props.id, e)} />
-      </div>
-    );
-  }
-
-  const SortableList = React.forwardRef((points, ref) => (
-    <div className="point-list" ref={ref}>
-      {points.map((item) => (
-        <SortableItem key={item.id} id={item.id} item={item} />
-      ))}
-    </div>
-  ));
-
-  // function handleDragEnd(event) {
-  //   const active = event.oldDraggableIndex,
-  //     over = event.newDraggableIndex;
-  //   if (active !== over) {
-  //     setPoints((items) => {
-  //       const oldIndex = items.indexOf(active);
-  //       const newIndex = items.indexOf(over);
-  //       return arrayMove(items, oldIndex, newIndex);
-  //     });
-  //   }
-  // }
-
-  useEffect(
-    () => Sortable.create(refSort.current),
-    [refSort]
-    // Sortable.create(ref, {
-    //   onEnd: handleDragEnd,
-    // })
-  );
-
+  console.log("points ", points);
   return (
-    <div className="routes-constructor" ref="routesConstructor">
+    <div className="routes-constructor">
       <div className="left-side">
         <form onSubmit={createMarker} method="post">
           <div className="input">
             <input
               type="text"
-              ref="markerName"
+              ref={inputRef}
               defaultValue=""
+              onChange={(e) => setInpValue(e.target.value.trim())}
               placeholder="Новая точка маршрута"
             />
           </div>
-          <SortableList items={points} ref={refSort} />
+          <div className="point-list">
+            {points.map((item) => (
+              <div className="point-list__item">
+                <span className="title">{item.title}</span>
+                <span
+                  className="remove"
+                  onClick={(e) => removeMarker(item.id, e)}
+                />
+              </div>
+            ))}
+          </div>
         </form>
       </div>
       <div className="right-side">
-        {/* <RoutesConstructorMapFunc markers={points} /> */}
+        <RoutesConstructorMapFunc markers={points} />
       </div>
     </div>
   );
