@@ -6,3 +6,7 @@ I clone it for education purpose only, author is NexusDeveloper.\
 !!! This repo is private, but GitHub reject this status for Russian-located users.\
 
 ### Function-style version by ZarNizza
+
+For Drug/Sort feature used another library: https://github.com/SortableJS/react-sortablejs by waynevanson
+
+At RCMapF.js string ref changed to React ref.

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { ReactSortable } from "react-sortablejs";
-import RoutesConstructorMapFunc from "./RoutesConstructorMapFunc";
+import RoutesConstructorMapFunc from "./RCMapFunc";
 import "./RoutesConstructor.css";
 
 export default function RoutesConstructorFunc() {
