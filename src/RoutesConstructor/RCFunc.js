@@ -1,7 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-// import ReactDOM from "react-dom";
-import Sortable from "sortablejs";
-import { arrayMoveImmutable } from "array-move";
+import React, { useState, useRef } from "react";
+import { ReactSortable } from "react-sortablejs";
 import RoutesConstructorMapFunc from "./RoutesConstructorMapFunc";
 import "./RoutesConstructor.css";
 
@@ -9,7 +7,6 @@ export default function RoutesConstructorFunc() {
   const [points, setPoints] = useState([]);
   const [inpValue, setInpValue] = useState("");
   const inputRef = useRef();
-  const listRef = useRef();
 
   function createMarker(e) {
     e.preventDefault();
@@ -34,27 +31,15 @@ export default function RoutesConstructorFunc() {
   }
 
   function handleSortEnd(event) {
-    const oldIndex = event.oldIndex,
-      newIndex = event.newIndex;
-    console.log("old/new ", oldIndex, newIndex);
-    console.log("points ", points);
-
-    if (oldIndex !== newIndex) {
+    if (event.oldIndex !== event.newIndex) {
       setPoints(
-        arrayMoveImmutable(points, oldIndex, newIndex).map((item, i) => {
+        points.map((item, i) => {
           item.index = i;
           return item;
         })
       );
     }
-    return;
   }
-
-  useEffect(() => {
-    Sortable.create(listRef.current, { onEnd: handleSortEnd });
-  });
-
-  console.log("----- points ", points);
 
   return (
     <div className="routes-constructor">
@@ -69,16 +54,23 @@ export default function RoutesConstructorFunc() {
               placeholder="Новая точка маршрута"
             />
           </div>
-          <div className="point-list" ref={listRef}>
-            {points.map((item) => (
-              <div className="point-list__item" key={item.id}>
-                <span className="title">{item.title}</span>
-                <span
-                  className="remove"
-                  onClick={(e) => removeMarker(item.id, e)}
-                />
-              </div>
-            ))}
+          <div className="point-list">
+            <ReactSortable
+              list={points}
+              setList={setPoints}
+              onEnd={handleSortEnd}
+              ghostClass="blue-background-class"
+            >
+              {points.map((item) => (
+                <div className="point-list__item" key={item.id}>
+                  <span className="title">{item.title}</span>
+                  <span
+                    className="remove"
+                    onClick={(e) => removeMarker(item.id, e)}
+                  />
+                </div>
+              ))}
+            </ReactSortable>
           </div>
         </form>
       </div>

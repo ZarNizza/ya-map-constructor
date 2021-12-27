@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 
 class RoutesConstructorMap extends Component {
@@ -24,6 +23,7 @@ class RoutesConstructorMap extends Component {
     this.state = {
       markers: props.markers || [],
     };
+    this.mapRef = React.createRef();
 
     this.__init();
   }
@@ -76,7 +76,7 @@ class RoutesConstructorMap extends Component {
 
     this.renderPath();
 
-    return <div className="map" ref="routesConstructorMap"></div>;
+    return <div className="map" ref={this.mapRef}></div>;
   }
 
   renderPath() {
@@ -117,13 +117,10 @@ class RoutesConstructorMap extends Component {
     this.__state = 1;
 
     window.ymaps.ready(function () {
-      window.__Map = That.__Map = new window.ymaps.Map(
-        ReactDOM.findDOMNode(That.refs.routesConstructorMap),
-        {
-          center: That.getCenter(),
-          zoom: 12,
-        }
-      );
+      window.__Map = That.__Map = new window.ymaps.Map(That.mapRef.current, {
+        center: That.getCenter(),
+        zoom: 12,
+      });
       That.__state = 2;
 
       window.ymaps.geocode("Самара").then(function (res) {
