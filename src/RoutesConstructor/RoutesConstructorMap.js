@@ -133,5 +133,4 @@ class RoutesConstructorMap extends Component {
     if (this.__state === 2) this.__Map.container.fitToViewport();
   }
 }
-
 export default RoutesConstructorMap;

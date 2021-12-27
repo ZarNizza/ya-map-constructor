@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
 import { ReactSortable } from "react-sortablejs";
-import RoutesConstructorMapFunc from "./RoutesConstructorMapFunc";
-import "./RoutesConstructor.css";
+// import RoutesConstructorMapFunc from "./RCMapFunc";
+import RoutesConstructorMapFunc from "./RoutesConstructorMap";
+import "./RC.css";
 
 export default function RoutesConstructorFunc() {
   const [points, setPoints] = useState([]);
@@ -44,6 +45,11 @@ export default function RoutesConstructorFunc() {
   return (
     <div className="routes-constructor">
       <div className="left-side">
+        <p className="compact-text">
+          Вводите названия точек маршрута, точки позиционируются в центр карты,
+          карту можно двигать. Порядок точек в списке можно менять
+          перетаскиванием.
+        </p>
         <form onSubmit={createMarker} method="post">
           <div className="input">
             <input
