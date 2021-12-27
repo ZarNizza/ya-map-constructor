@@ -14,3 +14,4 @@ For Drag/Sort feature used another library: https://github.com/SortableJS/react-
 In RCMapFunc.js string ref changed to React ref.
 
 ToDo: refactor RCMap at function-style, apply testing, write user manual
+
