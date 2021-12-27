@@ -63,3 +63,8 @@
 .blue-background-class {
   background-color: cadetblue;
 }
+.compact-text {
+  font-size: small;
+  margin: 10px;
+  color: dimgray;
+}
